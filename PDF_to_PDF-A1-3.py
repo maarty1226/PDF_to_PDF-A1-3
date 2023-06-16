@@ -54,10 +54,17 @@ def write_pdf_list_to_csv(output, csv_file):
     """Writes all files inside /arch to csv file as simple report"""
     with open(csv_file, 'w', encoding='utf8') as f:
         writer = csv.writer(f, lineterminator='\n')
-        for root, dirs, files in os.walk(output):
+        writer.writerow(["Conversion with GPL Ghostscript 10.01.1 (2023-03-27)"])
+        writer.writerow(
+            ["Conversion program: PDF_to_PDF-A1-3.py (based on https://github.com/maarty1226/PDF_to_PDF-A1-3)"])
+        writer.writerow([])
+
+    for root, dirs, files in os.walk(output):
             for file in files:
                 path = os.path.join(output, file)
                 writer.writerow([path])
+
+    f.close()
 
 
 if __name__ == '__main__':
